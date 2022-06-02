@@ -1,1 +1,1 @@
-# Optical-Character-Recognition-Spell-Checker
+# Optical-Character-Recognition + Spell-Checker
