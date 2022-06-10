@@ -1,10 +1,25 @@
 from flask import Flask, render_template, session, request, redirect, url_for,jsonify,flash
+import os
+UPLOAD_FOLDER = 'static/uploads/'
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route("/", methods=["GET","POST"])
-def index():
+@app.route("/", methods=["GET"])
+def index():    
     return render_template('home.html')
+
+@app.route("/upload-file", methods=["POST"])
+def upload_image():
+    if request.method == "POST":
+        print("here")
+        file = request.files["file"]
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'],file.filename))
+        data ={
+            "file":file.filename,
+            "message": "success"
+        }
+        return jsonify(data)
 
 
 if __name__ == "__main__":
