@@ -1,7 +1,7 @@
 # Optical-Character-Recognition + Spell-Checker
 
 ## Description
-The purpose of this project is to develope a web application which allows a user to upload an image with handwritten text or words.  The application uses a Neural network model to recognise and predict the handwritten word in the uploaded the image. This project represent task 3 of CPEN 403(Artificial Intelligence) course project.
+The purpose of this project is to develope a web application which allows a user to upload an image with handwritten text or words.  The application uses a Neural network model to recognise and predict the handwritten word in the uploaded image. This project represent task 3 of CPEN 403(Artificial Intelligence) course project.
 
 ## Prerequisites
 You need git to clone this project. You can get it from [http://git-scm.com/](http://git-scm.com/).
