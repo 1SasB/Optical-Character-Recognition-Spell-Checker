@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>OCR+SPC</title>
+</head>
+<body>
+  <div class="row justify-content-center">
+    
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-center">
+      <div class="container">
+        <!-- <h2>Optical Character Recognition</h2> -->
+        <h3>Optical Character Recognition + Spell Checker</h3>
+        <div class="">
+          
+          <div id="dp-box" class="container my-4 p-5">
+            <div class="" id="hdd">
+                <header>
+                    <h4>Select File</h4>
+                  </header>
+                  <p>Only images files supported</p>
+            </div>
+            
+            <form class="" id="fform" action="" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" id="fileID" >
+                <!-- <button id="choose-btn" class="btn">Choose File</button> -->
+                <button id="upload-btn" class="upbtn my-4">Upload</button>
+            </form>  
+          </div>
+          
+        </div>
+       
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <div class="container mt-4">
+        <div id="image-card"  class="">
+
+        </div>
+        <div id="alert-box" class="alert m-5 upd-alert alert-dark" role="alert">
+            
+          <div id="spinner-box" class="d-flex justify-content-center" >
+              <div class="spinner-border text-primary mx-2" role="status">
+                  <span class="visually-hidden"></span>
+              </div>
+              <div>
+                  Processing...
+              </div>
+          </div>
+      </div>
+        <div id="pword_container" class="d-flex d-none">
+          <p>Predicted word --> </p>
+          <b id="predicted_word"></b>
+        </div>
+        <div id="spell_checker" class="d-none">
+          <p>Predicted word is not an english word, do you mean <b id="similar_words"></b></p>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+    
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</html>
