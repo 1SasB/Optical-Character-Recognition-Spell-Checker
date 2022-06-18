@@ -2,11 +2,12 @@ from flask import Flask,Blueprint, render_template, session, request, redirect, 
 from .alpha_extracter import pred_img
 import os
 import numpy as np
-from . import model,scaler
+from . import alpha_model,alpha_scaler,num_model,num_scaler
 from english_words import english_words_set
 import difflib
 UPLOAD_FOLDER = 'main/static/uploads/'
-
+A_Z = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+NUMS = ['0','1','2','3','4','5','6','7','8','9']
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -22,44 +23,62 @@ def index():
 
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],file.filename))
 
-            nm = pred_img(file.filename)
-            word = predict_word(nm)
-            checked = check_spelling(word)
-
-            if checked == word:
-
-                data ={
-                    "file":file.filename,
-                    "message": "success",
-                    "word": word
-                }
-            else:
-                data ={
-                    "similar_words": checked,
-                    "file":file.filename,
-                    "message": "success",
-                    "word": word
-                }
         except Exception as e:
             data ={
                 "message": "failed"
             }
             print(e)
-        return jsonify(data)    
+            return jsonify(data)   
+
+        if request.form['select-op'] == 'alpha':
+
+            nm = pred_img(file.filename)
+            word = predict(nm,alpha_scaler,alpha_model,A_Z)
+            checked = check_spelling(word)
+
+            data = org_data(checked,word,file.filename)
+            return jsonify(data)
+            
+        else:
+            nm = pred_img(file.filename)
+            word = predict(nm,num_scaler,num_model,NUMS)
+
+            data ={
+                "file":file.filename,
+                "message": "success",
+                "word": word
+            }
+            return jsonify(data)
+
     return render_template('home.html')
 
 
+def org_data(d,w,f):
+    if d == w:
+        data ={
+            "file":f,
+            "message": "success",
+            "word": w
+        }
+    else:
+        data ={
+            "similar_words": d,
+            "file":f,
+            "message": "success",
+            "word": w
+        }
+    return data
 
 
-def predict_word(n_images):
-    A_Z = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'] 
+def predict(n_images,scaler,model,scope):
+     
 
 
     # scaler=load('std_scaler.bin')
     new_images = scaler.transform(n_images)
 
     predictions = [ np.argmax(np.array(list(map(int,pred == max(pred))))) for pred in model.predict(new_images)]
-    predictions = [A_Z[p] for p in predictions]
+    predictions = [scope[p] for p in predictions]
     print(predictions) 
     predicted_word = "".join(predictions)
     predicted_word = predicted_word.lower()
