@@ -27,8 +27,22 @@
             
             <form class="" id="fform" action="" enctype="multipart/form-data">
                 <input type="file" name="file" accept="image/*" id="fileID" >
+                <div class="mt-3">
+                  <div class="form-check">
+                    <input class="form-check-input" value="alpha" type="radio" name="select-op" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Predict Alphabets
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" value="num" type="radio" name="select-op" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Predict Numbers
+                    </label>
+                  </div>
+                </div>
                 <!-- <button id="choose-btn" class="btn">Choose File</button> -->
-                <button id="upload-btn" class="upbtn my-4">Upload</button>
+                <button id="upload-btn" class="upbtn my-4">Upload and check</button>
             </form>  
           </div>
           
