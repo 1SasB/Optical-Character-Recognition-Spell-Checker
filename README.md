@@ -48,7 +48,7 @@ or
 py app.py
 ```
 
-** Aplication Demo
+## Aplication Demo
 
 https://user-images.githubusercontent.com/79332190/174684643-e0d5aa8b-3e9f-4fe5-b96c-aa9f6c874799.mp4
 
