@@ -11,9 +11,9 @@ You can get it from [https://www.python.org/downloads/](https://www.python.org/d
 
 ## Technologies
 The technologies used on this project are 
-* Html,css,Bootrsap,jQuery,Ajax(Frontend)
-* Flask(Backend)
-* Python(Functionality)
+* Html,css,Bootrsap,jQuery,Ajax (Frontend)
+* Flask (Backend)
+* Python (Functionality)
 
 ## Steps to Install project
 
