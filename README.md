@@ -17,9 +17,17 @@ You can get it from [https://www.python.org/downloads/](https://www.python.org/d
 ```
 git clone https://github.com/1SasB/Optical-Character-Recognition-Spell-Checker.git
 ```
+* Navigate to the integrate branch using the command
+```
+git checkout integrate
+```
 * Create a virtual environment with the command 
 ```
  python -m venv env 
+```
+or
+```
+ py -m venv env 
 ```
 * If successful, a virtual python environment would be created in your directory with the name **env**. You can replace **env** with a preferd name of your choice
 * Run the command below to activate your virtual environment
@@ -31,3 +39,17 @@ git clone https://github.com/1SasB/Optical-Character-Recognition-Spell-Checker.g
 ```
 pip install -r requirements.txt
 ```
+* Start the server by excecting the command
+```
+python app.py
+```
+or
+```
+py app.py
+```
+
+** Aplication Demo
+
+https://user-images.githubusercontent.com/79332190/174684643-e0d5aa8b-3e9f-4fe5-b96c-aa9f6c874799.mp4
+
+
