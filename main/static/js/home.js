@@ -120,6 +120,10 @@ $("#upload-btn").on('click',function(){
                 $("#alert-box").toggleClass("upd-alert");
                 console.log("couldnt save files")
             }
+            else if(response.message == 'failedp'){
+                $("#alert-box").toggleClass("upd-alert");
+                console.log("couldnt make predictions")
+            }
             else{
                 $('#sp_save-btn').toggleClass('sh-spinner');
                 console.log("couldnt save files")

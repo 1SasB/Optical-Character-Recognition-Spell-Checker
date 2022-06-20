@@ -1,3 +1,4 @@
+from hashlib import new
 import imp
 import numpy as np
 import cv2
@@ -40,8 +41,9 @@ def pred_img(filename):
       print(alpha_im.shape)
       new_images.append(alpha_im)
 
-  new_images = np.array(new_images) 
-
+  new_images = np.array(new_images)
+  print(new_images)
+ 
 
   # A_Z = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
   # model = load_model("alpha_pred.h5")

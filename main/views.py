@@ -5,9 +5,11 @@ import numpy as np
 from . import alpha_model,alpha_scaler,num_model,num_scaler
 from english_words import english_words_set
 import difflib
+
 UPLOAD_FOLDER = 'main/static/uploads/'
 A_Z = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 NUMS = ['0','1','2','3','4','5','6','7','8','9']
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -33,22 +35,29 @@ def index():
         if request.form['select-op'] == 'alpha':
 
             nm = pred_img(file.filename)
-            word = predict(nm,alpha_scaler,alpha_model,A_Z)
-            checked = check_spelling(word)
+            if nm.any():
+                word = predict(nm,alpha_scaler,alpha_model,A_Z)
+                checked = check_spelling(word)
 
-            data = org_data(checked,word,file.filename)
-            return jsonify(data)
+                data = org_data(checked,word,file.filename)
+                return jsonify(data)
+            else:
+                return jsonify({"message":"failedp"})
             
         else:
             nm = pred_img(file.filename)
-            word = predict(nm,num_scaler,num_model,NUMS)
+            if nm.any():
 
-            data ={
-                "file":file.filename,
-                "message": "success",
-                "word": word
-            }
-            return jsonify(data)
+                word = predict(nm,num_scaler,num_model,NUMS)
+
+                data ={
+                    "file":file.filename,
+                    "message": "success",
+                    "word": word
+                }
+                return jsonify(data)
+            else:
+                return jsonify({"message":"failedp"})
 
     return render_template('home.html')
 
