@@ -2,7 +2,7 @@ from flask import Flask,Blueprint, render_template, session, request, redirect, 
 from .alpha_extracter import pred_img
 import os
 import numpy as np
-from . import alpha_model,alpha_scaler,num_model,num_scaler
+# from . import alpha_model,alpha_scaler,num_model,num_scaler
 from english_words import english_words_set
 import difflib
 
@@ -36,10 +36,14 @@ def index():
 
             nm = pred_img(file.filename)
             if nm.any():
-                word = predict(nm,alpha_scaler,alpha_model,A_Z)
-                checked = check_spelling(word)
+                # word = predict(nm,alpha_scaler,alpha_model,A_Z)
+                # checked = check_spelling(word)
 
-                data = org_data(checked,word,file.filename)
+                # data = org_data(checked,word,file.filename)
+                data ={
+                    "file":file.filename,
+                    "message": "success"
+                }
                 return jsonify(data)
             else:
                 return jsonify({"message":"failedp"})
@@ -48,12 +52,11 @@ def index():
             nm = pred_img(file.filename)
             if nm.any():
 
-                word = predict(nm,num_scaler,num_model,NUMS)
+                # word = predict(nm,num_scaler,num_model,NUMS)
 
                 data ={
                     "file":file.filename,
-                    "message": "success",
-                    "word": word
+                    "message": "success"
                 }
                 return jsonify(data)
             else:
@@ -79,27 +82,27 @@ def org_data(d,w,f):
     return data
 
 
-def predict(n_images,scaler,model,scope):
+# def predict(n_images,scaler,model,scope):
      
 
 
-    # scaler=load('std_scaler.bin')
-    new_images = scaler.transform(n_images)
+#     # scaler=load('std_scaler.bin')
+#     new_images = scaler.transform(n_images)
 
-    predictions = [ np.argmax(np.array(list(map(int,pred == max(pred))))) for pred in model.predict(new_images)]
-    predictions = [scope[p] for p in predictions]
-    print(predictions) 
-    predicted_word = "".join(predictions)
-    predicted_word = predicted_word.lower()
+#     predictions = [ np.argmax(np.array(list(map(int,pred == max(pred))))) for pred in model.predict(new_images)]
+#     predictions = [scope[p] for p in predictions]
+#     print(predictions) 
+#     predicted_word = "".join(predictions)
+#     predicted_word = predicted_word.lower()
 
-    print(predicted_word)
-    return predicted_word
+#     print(predicted_word)
+#     return predicted_word
 
-def check_spelling(pword):
-  if(pword in english_words_set):
-    print(f"Recognised word: {pword}")
-    return pword
-  else:
-    close_matches = difflib.get_close_matches(pword, english_words_set)
-    print(f"Sorry we are unable to recognise your word,\nDid you mean any of these:  {close_matches}")
-    return close_matches
+# def check_spelling(pword):
+#   if(pword in english_words_set):
+#     print(f"Recognised word: {pword}")
+#     return pword
+#   else:
+#     close_matches = difflib.get_close_matches(pword, english_words_set)
+#     print(f"Sorry we are unable to recognise your word,\nDid you mean any of these:  {close_matches}")
+#     return close_matches
