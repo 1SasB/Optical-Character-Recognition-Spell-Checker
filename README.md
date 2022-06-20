@@ -9,6 +9,11 @@ You need git to clone this project. You can get it from [http://git-scm.com/](ht
 You must have python installed. 
 You can get it from [https://www.python.org/downloads/](https://www.python.org/downloads/). 
 
+## Technologies
+The technologies used on this project are 
+* Html,css,Bootrsap,jQuery,Ajax(Frontend)
+* Flask(Backend)
+* Python(Functionality)
 
 ## Steps to Install project
 
