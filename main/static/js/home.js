@@ -27,7 +27,7 @@ console.log($("#upload-btn"))
 
 // });
 
-function appendd(filename){
+function appendd(filename,word){
     if($("#image-card").find("#img-container").length){
         $("#img-container").remove()
         $("#image-card").append(
@@ -49,8 +49,8 @@ function appendd(filename){
         )
     }
 
-    // $("#predicted_word").html(word)
-    // $('#pword_container').removeClass('d-none')
+    $("#predicted_word").html(word)
+    $('#pword_container').removeClass('d-none')
     
 }
 
@@ -106,7 +106,7 @@ $("#upload-btn").on('click',function(){
             if(response.message == 'success'){
                 console.log("We made it ")
                 $("#alert-box").toggleClass("upd-alert");
-                appendd(response.file)
+                appendd(response.file,response.word)
                 if (response.similar_words){
                     show_simliar(response.similar_words)
                 }else{
